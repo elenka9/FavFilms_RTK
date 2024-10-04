@@ -1,0 +1,18 @@
+input {
+    width: 300px;
+    height: 20px;
+    background-color: #ededf1;
+    color: #000012;
+    border-radius: 8px;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    margin: 0px 10px;
+}
+
+button {
+    background-color:  rgb(229,9,20);
+    color: rgb(225,225,225);
+}
+
