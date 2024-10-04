@@ -2,12 +2,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; //Используем localStorage По умолчаию
-import favoriteMoviesReducer from '../movie/favoriteMoviesSlice'
+import favoriteMoviesReducer from "../movie/favoriteMoviesSlice";
 
 // объект для настройки сохранения состояния хранилища
 const persistConfig = {
   key: "root", // ключ, под которым будет сохранено состояние
-  storage, // место, где будет храниться состояние 
+  storage, // место, где будет храниться состояние
 };
 
 // создаем редьюсер, который автоматически сохраняет состояние
@@ -20,6 +20,6 @@ const store = configureStore({
   },
 });
 
-// persistStore создает объект persistor для управления процессом сохранением и восстановлением состояния 
+// persistStore создает объект persistor для управления процессом сохранением и восстановлением состояния
 export const persistor = persistStore(store);
 export default store;
