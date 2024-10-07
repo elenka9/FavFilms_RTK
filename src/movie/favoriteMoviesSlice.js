@@ -19,11 +19,6 @@ const favoriteMoviesSlice = createSlice({
       }
     },
 
-    findMovieByTitle: (state, action) => {
-      state.movies = state.movies.filter((movie) =>
-        movie.title.toLowerCase().includes(action.payload.toLowerCase)
-      );
-    },
     removeMovie: (state, action) => {
       state.movies = state.movies.filter(
         (movie) => movie.id !== action.payload
@@ -36,6 +31,6 @@ const favoriteMoviesSlice = createSlice({
   },
 });
 
-export const { addMovie, findMovieByTitle, removeMovie, clearMovies } =
+export const { addMovie, removeMovie, clearMovies } =
   favoriteMoviesSlice.actions;
 export default favoriteMoviesSlice.reducer;

@@ -15,7 +15,12 @@ const MovieInput = () => {
     const newErrors = {};
     if (!movieTitle.trim())
       newErrors.movieTitle = "Вы не ввели название фильма";
-    if (movies.includes(movieTitle.trim()))
+    else if (
+      movies.some(
+        (movie) => movie.title.toLowerCase() === movieTitle.trim().toLowerCase()
+      )
+    )
+      // есть ли в массиве хотябы 1 элемент (метод some), который удовлетворяет условию колбэк-функции.
       newErrors.movieTitle = "Такой фильм уже есть";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0; //возвращает true если нет ошибок
@@ -34,15 +39,13 @@ const MovieInput = () => {
 
   return (
     <div>
+      {errors.movieTitle && <p style={{ color: "red" }}>{errors.movieTitle}</p>}
       <input
         type="text"
         placeholder="Enter movie title"
         value={movieTitle}
         onChange={(e) => setMovieTitle(e.target.value)} // анонимная функция обновляет состояние movieTitle  новым значением,e.target.value -это значение которое было введено в поле ввода
       />
-      {errors.movieTitle && (
-        <span style={{ color: "red" }}>{errors.movieTitle}</span>
-      )}
       <button onClick={handleAddMovie}>Add</button>
     </div>
   );

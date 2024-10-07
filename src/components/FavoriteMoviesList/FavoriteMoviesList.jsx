@@ -1,17 +1,17 @@
 // отображает список избранных фильмов
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import {
-  removeMovie,
-  clearMovies,
-  findMovieByTitle,
-} from "../../movie/favoriteMoviesSlice";
+import { removeMovie, clearMovies } from "../../movie/favoriteMoviesSlice";
 import "./favoriteMoviesList.css";
 
 const FavoriteMoviesList = () => {
   const movies = useSelector((state) => state.favoriteMovies.movies); // выбирает массив фильмов из секции favoriteMovies хранилища
   const dispatch = useDispatch();
   const [findByTitle, setFindByTitle] = useState("");
+
+  const filteredMovies = movies.filter((movie) => // фильтруем массив movies оставляя только те, в названии которых есть подстрока findTitle 
+    movie.title.toLowerCase().includes(findByTitle.toLowerCase())
+  );
 
   return (
     <div>
@@ -23,12 +23,9 @@ const FavoriteMoviesList = () => {
           value={findByTitle}
           onChange={(e) => setFindByTitle(e.target.value)}
         />
-        <button onClick={() => dispatch(findMovieByTitle(findByTitle))}>
-          Find
-        </button>
       </div>
       <ul className="zebra">
-        {movies.map((movie) => (
+        {filteredMovies.map((movie) => (
           <li key={movie.id}>
             {movie.title}
             <button
